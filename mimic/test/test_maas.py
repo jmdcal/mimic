@@ -382,11 +382,20 @@ class MaasAPITests(SynchronousTestCase):
         """
         fetch agent host info
         """
-        req = request(self, self.root, "GET", self.uri + '/views/agent_host_info', '')
+        ecan = self.get_ecan_object_ids()
+        for q in range(4):
+            req = request(self, self.root, "GET",
+                          self.uri + '/views/agent_host_info?entityId='+ecan['entity_id'], '')
+            resp = self.successResultOf(req)
+            self.assertEquals(resp.code, 400)
+            data = self.get_responsebody(resp)
+            self.assertEquals(True, 'Agent does not exist' in json.dumps(data))
+        req = request(self, self.root, "GET",
+                      self.uri + '/views/agent_host_info?entityId='+ecan['entity_id'], '')
         resp = self.successResultOf(req)
-        self.assertEquals(resp.code, 400)
+        self.assertEquals(resp.code, 200)
         data = self.get_responsebody(resp)
-        self.assertEquals(True, 'Agent does not exist' in json.dumps(data))
+        self.assertEquals(True, ecan['entity_id'] == data['values'][0]['entity_id'])
 
     def test_metriclist(self):
         """
