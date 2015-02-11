@@ -622,7 +622,8 @@ class MaasMock(object):
     @app.route('/v1.0/<string:tenant_id>/views/agent_host_info', methods=['GET'])
     def view_agent_host_info(self, request, tenant_id):
         """
-        No agent monitoring. For now, always return 400.
+        Return 400 until the fifth attempt, then start to return data as if the
+        Agent is truly installed and working.
         """
         entity_id = request.args['entityId'][0].strip()
         for e in self._entity_cache_for_tenant(tenant_id).entities_list:
