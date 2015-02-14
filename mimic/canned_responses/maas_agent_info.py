@@ -12,7 +12,7 @@ def agent_info(entity_id, agent_id):
             {
                 "agent_id": agent_id,
                 "entity_id": entity_id,
-                "entity_uri": "https://ord.servers.api.mimic.co.jp/"+agent_id,
+                "entity_uri": "https://ord.servers.api.mimic.co.jp/" + agent_id,
                 "host_info": {
                     "memory": {
                         "timestamp": 1423092674788,

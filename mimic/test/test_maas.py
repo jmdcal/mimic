@@ -333,13 +333,13 @@ class MaasAPITests(SynchronousTestCase):
         """
         for q in range(4):
             req = request(self, self.root, "GET",
-                          self.uri + '/views/agent_host_info?entityId='+self.entity_id)
+                          self.uri + '/views/agent_host_info?entityId=' + self.entity_id)
             resp = self.successResultOf(req)
             self.assertEquals(resp.code, 400)
             data = self.get_responsebody(resp)
             self.assertEquals(True, 'Agent does not exist' in json.dumps(data))
         req = request(self, self.root, "GET",
-                      self.uri + '/views/agent_host_info?entityId='+self.entity_id, '')
+                      self.uri + '/views/agent_host_info?entityId=' + self.entity_id)
         resp = self.successResultOf(req)
         self.assertEquals(resp.code, 200)
         data = self.get_responsebody(resp)
