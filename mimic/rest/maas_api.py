@@ -627,7 +627,7 @@ class MaasMock(object):
         """
         if 'entityId' not in request.args:
             request.setResponseCode(400)
-            return json.dump({'type': 'badRequest',
+            return json.dumps({'type': 'badRequest',
                               'code': 400,
                               'message': 'Validation error for key \'agentId, entityId, uri\'',
                               'details': 'You must specify an agentId, entityId, or an entity URI.',

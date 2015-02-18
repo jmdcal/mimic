@@ -344,6 +344,12 @@ class MaasAPITests(SynchronousTestCase):
         self.assertEquals(resp.code, 200)
         data = self.get_responsebody(resp)
         self.assertEquals(True, self.entity_id == data['values'][0]['entity_id'])
+        req = request(self, self.root, "GET",
+                      self.uri + '/views/agent_host_info')
+        resp = self.successResultOf(req)
+        self.assertEquals(resp.code, 400)
+        data = self.get_responsebody(resp)
+        self.assertEquals(True, data['type'] == 'badRequest')
 
     def test_metriclist(self):
         """
