@@ -628,11 +628,11 @@ class MaasMock(object):
         if 'entityId' not in request.args:
             request.setResponseCode(400)
             return json.dumps({'type': 'badRequest',
-                              'code': 400,
-                              'message': 'Validation error for key \'agentId, entityId, uri\'',
-                              'details': 'You must specify an agentId, entityId, or an entity URI.',
-                              'mimicNotes': 'But mimic will only accept entityId right now',
-                              "txnId": ".fake.mimic.transaction.id.c-1111111.ts-123444444.v-12344frf"})
+                               'code': 400,
+                               'message': 'Validation error for key \'agentId, entityId, uri\'',
+                               'details': 'You must specify an agentId, entityId, or an entity URI.',
+                               'mimicNotes': 'But mimic will only accept entityId right now',
+                               'txnId': '.fake.mimic.transaction.id.c-1111111.ts-123444444.v-12344frf'})
         entity_id = request.args['entityId'][0].strip()
         for e in self._entity_cache_for_tenant(tenant_id).entities_list:
             if e['id'] == entity_id:
